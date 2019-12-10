@@ -63,7 +63,8 @@
             <!-- 删除按钮 -->
             <el-button type="danger"
                        icon="el-icon-delete"
-                       size="mini">
+                       size="mini"
+                       @click="removeUserById(scope.row.id)">
             </el-button>
             <!-- 分配角色按钮 -->
             <el-tooltip effect="dark"
@@ -178,7 +179,7 @@ export default {
         // 当前的页数
         pagenum: 1,
         // 当前每页显示多少条数据
-        pagesize: 2
+        pagesize: 10
       },
       userlist: [],
       total: 0,
@@ -308,9 +309,29 @@ export default {
         // 刷新数据列表
         this.getUserList()
       })
+    },
+    removeUserById (id) {
+      this.$confirm('此操作将永久删除该用户, 是否继续?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+        // 确认后的操作
+      }).then(async () => {
+        const { data: res } = await this.$http.delete('users/' + id)
+        if (res.meta.status !== 200) {
+          this.$message.error('删除用户失败！')
+        }
+        this.$message.success('删除用户成功！')
+        this.getUserList()
+        // 失败后的操作
+      }).catch(() => {
+        this.$message({
+          type: 'info',
+          message: '已取消删除'
+        })
+      })
     }
   }
-
 }
 </script>
 
