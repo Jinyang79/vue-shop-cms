@@ -207,7 +207,7 @@ export default {
         children: 'children'
       },
       // 默认选择的节点
-      defKeys: [105, 116],
+      defKeys: [],
       roleId: ''
     }
   },
