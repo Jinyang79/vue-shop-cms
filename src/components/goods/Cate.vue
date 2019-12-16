@@ -87,6 +87,8 @@
             <el-input v-model="addCateForm.cat_name"></el-input>
           </el-form-item>
           <el-form-item label="父级分类">
+            <!-- v-model 选中项绑定值 -->
+            <!-- options 可选项数据源，键名可通过 Props 属性配置 -->
             <el-cascader v-model="selectedKeys"
                          :options="parentCateList"
                          :props="cascaderProps"
