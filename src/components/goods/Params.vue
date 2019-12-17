@@ -249,7 +249,7 @@ export default {
       this.cateList = res.data
       /* console.log(this.cateList) */
     },
-    // 当选中节点变化时触发
+    // 级联选择器选中项变化，会触发这个函数
     cateChange () {
       // 选中的,不是三级分类
       if (this.selectedKeys.length !== 3) {
