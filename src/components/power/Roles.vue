@@ -129,7 +129,8 @@
                ref="editFormRef"
                label-width="70px">
         <el-form-item label="角色 ID">
-          <el-input v-model="editForm.roleId"></el-input>
+          <el-input v-model="editForm.roleId"
+                    disabled></el-input>
         </el-form-item>
         <el-form-item label="角色名称"
                       prop="email">

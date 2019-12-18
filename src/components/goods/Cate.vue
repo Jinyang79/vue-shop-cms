@@ -111,8 +111,9 @@
         <!-- 内容主体区域 -->
         <el-form :model="editCateForm"
                  label-width="100px"
+                 :rules="editCateFormRules"
                  ref="editFormRef">
-          <el-form-item label="活动名称">
+          <el-form-item label="分类名称">
             <el-input v-model="editCateForm.cat_name"></el-input>
           </el-form-item>
         </el-form>
@@ -202,7 +203,14 @@ export default {
       // 控制修改分类对话框的显示
       editCatedialogFormVisible: false,
       // 修改用户的表单数据
-      editCateForm: {}
+      editCateForm: {
+        cat_name: ''
+      },
+      editCateFormRules: {
+        cat_name: [
+          { required: true, message: '请输入分类名称', trigger: 'blur' }
+        ]
+      }
     }
   },
   created () {

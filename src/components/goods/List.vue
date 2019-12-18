@@ -53,7 +53,8 @@
             <!-- 编辑按钮 -->
             <el-button type="primary"
                        icon="el-icon-edit"
-                       size="mini">
+                       size="mini"
+                       @click="showEditDialog(scope.row.goods_id)">
             </el-button>
             <!-- 删除按钮 -->
             <el-button type="danger"
@@ -75,6 +76,36 @@
                      background>
       </el-pagination>
     </el-card>
+    <!-- 编辑对话框 -->
+    <el-dialog title="修改分类"
+               :visible.sync="editDialogVisible"
+               @close="editDialogClosed">
+      <!-- 内容主体区域 -->
+      <el-form :model="editForm"
+               label-width="100px"
+               ref="editFormRef"
+               :rules="editFormRules">
+        <el-form-item label="商品 ID">
+          <el-input v-model="editForm.goods_id"
+                    disabled></el-input>
+        </el-form-item>
+        <el-form-item label="商品名称">
+          <el-input v-model="editForm.goods_name"></el-input>
+        </el-form-item>
+        <el-form-item label="商品价格(元)">
+          <el-input v-model="editForm.goods_price"></el-input>
+        </el-form-item>
+        <el-form-item label="商品重量">
+          <el-input v-model="editForm.goods_weight"></el-input>
+        </el-form-item>
+      </el-form>
+      <div slot="footer"
+           class="dialog-footer">
+        <el-button @click="editDialogVisible = false">取 消</el-button>
+        <el-button type="primary"
+                   @click="editInfo">确 定</el-button>
+      </div>
+    </el-dialog>
   </div>
 </template>
 <script>
@@ -89,7 +120,16 @@ export default {
       },
       // 商品数据列表
       goodsList: [],
-      total: 0
+      total: 0,
+      // 控制修改分类对话框的显示
+      editDialogVisible: false,
+      // 修改用户的表单数据
+      editForm: {},
+      editFormRules: {
+        goods_name: [{ required: true, message: '请输入用户名', trigger: 'blur' }],
+        goods_price: [{ required: true, message: '请输入用户名', trigger: 'blur' }],
+        goods_weight: [{ required: true, message: '请输入用户名', trigger: 'blur' }]
+      }
     }
   },
   created () {
@@ -139,6 +179,35 @@ export default {
     // 跳转到添加商品页面
     goAddpage () {
       this.$router.push('/goods/add')
+    },
+    // 展示编辑分类的对话框
+    async showEditDialog (goodsId) {
+      const { data: res } = await this.$http.get('goods/' + goodsId)
+      if (res.meta.status !== 200) { return this.$message.error('查询分类失败！') }
+      this.editForm = res.data
+      console.log(this.editForm)
+      this.editDialogVisible = true
+    },
+    // 监听编辑分类对话框的关闭事件
+    editDialogClosed () {
+      this.$refs.editFormRef.resetFields()
+    },
+    // 编辑分类信息并提交
+    editInfo () {
+      this.$refs.editFormRef.validate(async valid => {
+        if (!valid) return
+        const { data: res } = await this.$http.put('categories/' + this.editCateForm.cat_id, {
+          cat_name: this.editCateForm.cat_name
+        })
+        if (res.meta.status !== 200) {
+          this.$message.error('更新分类信息失败！')
+        }
+        this.$message.success('更新分类信息成功！')
+        // 关闭对话框
+        this.editDialogVisible = false
+        // 刷新数据列表
+        this.getGoodsList()
+      })
     }
   }
 }
