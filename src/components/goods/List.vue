@@ -82,20 +82,23 @@
                @close="editDialogClosed">
       <!-- 内容主体区域 -->
       <el-form :model="editForm"
-               label-width="100px"
-               ref="editFormRef"
-               :rules="editFormRules">
+               :rules="editFormRules"
+               label-width="120px"
+               ref="editFormRef">
         <el-form-item label="商品 ID">
           <el-input v-model="editForm.goods_id"
                     disabled></el-input>
         </el-form-item>
-        <el-form-item label="商品名称">
+        <el-form-item label="商品名称"
+                      prop="goods_name">
           <el-input v-model="editForm.goods_name"></el-input>
         </el-form-item>
-        <el-form-item label="商品价格(元)">
+        <el-form-item label="商品价格(元)"
+                      prop="goods_price">
           <el-input v-model="editForm.goods_price"></el-input>
         </el-form-item>
-        <el-form-item label="商品重量">
+        <el-form-item label="商品重量"
+                      prop="goods_weight">
           <el-input v-model="editForm.goods_weight"></el-input>
         </el-form-item>
       </el-form>
@@ -125,10 +128,18 @@ export default {
       editDialogVisible: false,
       // 修改用户的表单数据
       editForm: {},
+      // 修改用户的验证规则
       editFormRules: {
-        goods_name: [{ required: true, message: '请输入用户名', trigger: 'blur' }],
-        goods_price: [{ required: true, message: '请输入用户名', trigger: 'blur' }],
-        goods_weight: [{ required: true, message: '请输入用户名', trigger: 'blur' }]
+        goods_name: [
+          { required: true, message: '请输入商品名字', trigger: 'blur' }
+        ],
+        goods_price: [
+          { required: true, message: '请输入商品价格', trigger: 'blur' }
+        ],
+        goods_weight: [
+          { required: true, message: '请输入商品重量', trigger: 'blur' }
+
+        ]
       }
     }
   },
@@ -196,11 +207,14 @@ export default {
     editInfo () {
       this.$refs.editFormRef.validate(async valid => {
         if (!valid) return
-        const { data: res } = await this.$http.put('categories/' + this.editCateForm.cat_id, {
-          cat_name: this.editCateForm.cat_name
-        })
-        if (res.meta.status !== 200) {
-          this.$message.error('更新分类信息失败！')
+        const { data: res } = await this.$http.put('goods/' + this.editForm.goods_id,
+          {
+            goods_name: this.editForm.goods_name,
+            goods_price: this.editForm.goods_price,
+            goods_number: this.editForm.goods_number
+          })
+        if (res.meta.status !== 201) {
+          return this.$message.error('更新分类信息失败！')
         }
         this.$message.success('更新分类信息成功！')
         // 关闭对话框

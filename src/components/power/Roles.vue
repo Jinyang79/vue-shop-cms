@@ -127,17 +127,18 @@
       <!-- 内容主体区域 -->
       <el-form :model="editForm"
                ref="editFormRef"
-               label-width="70px">
+               :rules="editFormRules"
+               label-width="100px">
         <el-form-item label="角色 ID">
           <el-input v-model="editForm.roleId"
                     disabled></el-input>
         </el-form-item>
         <el-form-item label="角色名称"
-                      prop="email">
+                      prop="roleName">
           <el-input v-model="editForm.roleName"></el-input>
         </el-form-item>
         <el-form-item label="角色描述"
-                      prop="mobile">
+                      prop="roleDesc">
           <el-input v-model="editForm.roleDesc"></el-input>
         </el-form-item>
       </el-form>
@@ -196,6 +197,14 @@ export default {
       },
       // 修改用户的表单数据
       editForm: {},
+      editFormRules: {
+        roleName: [
+          { required: true, message: '请输入角色名称', trigger: 'blur' }
+        ],
+        roleDesc: [
+          { message: '请输入角色描述', trigger: 'blur' }
+        ]
+      },
       // 控制修改用户对话框的显示与隐藏
       editDialogVisible: false,
       // 控制分配权限对话框的显示与隐藏
