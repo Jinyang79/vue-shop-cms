@@ -3,7 +3,7 @@
     <!-- 头部区 -->
     <el-header>
       <div>
-        <img src="../assets/heima.png"
+        <img src="../assets/logo.jpg"
              alt="">
         <span>电商管理后台系统</span>
       </div>
@@ -140,5 +140,10 @@ export default {
   line-height: 24px;
   cursor: pointer;
   letter-spacing: 0.2em;
+}
+img {
+  width: 50px;
+  border-radius: 50%;
+  margin-left: 5px;
 }
 </style>

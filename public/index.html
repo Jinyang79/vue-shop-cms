@@ -5,32 +5,29 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+  <link rel="icon" href="<%= BASE_URL %>logo.ico">
   <title><%=htmlWebpackPlugin.options.isProd ? '' : 'dev -' %>电商后台管理系统</title>
 
 
   <% if(htmlWebpackPlugin.options.isProd) { %>
   <!-- nprogress 的样式表文件 -->
-  <link rel="stylesheet" href="https://cdn.staticfile.org/nprogress/0.2.0/nprogress.min.css" />
-  <!-- 富文本编辑器 的样式表文件 -->
-  <link rel="stylesheet" href="https://cdn.staticfile.org/quill/1.3.4/quill.core.min.css" />
-  <link rel="stylesheet" href="https://cdn.staticfile.org/quill/1.3.4/quill.snow.min.css" />
-  <link rel="stylesheet" href="https://cdn.staticfile.org/quill/1.3.4/quill.bubble.min.css" />
-  <!-- element-ui 的样式表文件 -->
-  <link rel="stylesheet" href="https://cdn.staticfile.org/element-ui/2.8.2/theme-chalk/index.css" />
-
-  <script src="https://cdn.staticfile.org/vue/2.5.22/vue.min.js"></script>
-  <script src="https://cdn.staticfile.org/vue-router/3.0.1/vue-router.min.js"></script>
-  <script src="https://cdn.staticfile.org/axios/0.18.0/axios.min.js"></script>
-  <script src="https://cdn.staticfile.org/lodash.js/4.17.11/lodash.min.js"></script>
-  <script src="https://cdn.staticfile.org/echarts/4.1.0/echarts.min.js"></script>
-  <script src="https://cdn.staticfile.org/nprogress/0.2.0/nprogress.min.js"></script>
-  <!-- 富文本编辑器的 js 文件 -->
-  <script src="https://cdn.staticfile.org/quill/1.3.4/quill.min.js"></script>
+  <link href="https://cdn.bootcss.com/viewerjs/1.3.7/viewer.min.css" rel="stylesheet">
+  <link href="https://cdn.bootcss.com/quill/2.0.0-dev.3/quill.bubble.min.css" rel="stylesheet">
+  <link href="https://cdn.bootcss.com/quill/2.0.0-dev.3/quill.core.min.css" rel="stylesheet">
+  <link href="https://cdn.bootcss.com/quill/2.0.0-dev.3/quill.snow.min.css" rel="stylesheet">
+  <link href="https://cdn.bootcss.com/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="https://cdn.bootcss.com/element-ui/2.12.0/theme-chalk/index.css" rel="stylesheet">
+  <script src="https://cdn.bootcss.com/vue/2.6.10/vue.min.js"></script>
+  <script src="https://cdn.bootcss.com/vue-router/3.1.3/vue-router.min.js"></script>
+  <script src="https://cdn.bootcss.com/axios/0.19.0/axios.min.js"></script>
+  <script src="https://cdn.bootcss.com/lodash.js/4.17.15/lodash.min.js"></script>
+  <script src="https://cdn.bootcss.com/echarts/4.4.0-rc.1/echarts.min.js"></script>
+  <script src="https://cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+  <script src="https://cdn.bootcss.com/quill/2.0.0-dev.3/quill.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/vue-quill-editor@3.0.4/dist/vue-quill-editor.js"></script>
-
-  <!-- element-ui 的 js 文件 -->
-  <script src="https://cdn.staticfile.org/element-ui/2.8.2/index.js"></script>
+  <script src="https://cdn.bootcss.com/viewerjs/1.3.7/viewer.min.js"></script>
+  <script src="https://cdn.bootcss.com/moment.js/2.24.0/moment.min.js"></script>
+  <script src="https://cdn.bootcss.com/element-ui/2.12.0/index.js"></script>
 
   <% } %>
 </head>

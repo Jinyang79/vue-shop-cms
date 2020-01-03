@@ -57,7 +57,7 @@
         </el-table-column>
         <el-table-column label="操作"
                          width="120px">
-          <template slot-scope>
+          <template>
             <!-- 修改信息 -->
             <el-button type="primary"
                        icon="el-icon-edit"
@@ -167,7 +167,6 @@ export default {
       if (res.meta.status !== 200) { return this.$message.error('获取失败！') }
       this.orderList = res.data.goods
       this.total = res.data.total
-      console.log(this.orderList)
     },
     // 监听当前每页显示多少条数据
     handleSizeChange (val) {
@@ -189,8 +188,6 @@ export default {
       const { data: res } = await this.$http.get(`/kuaidi/1106975712662`)
       if (res.meta.status !== 200) { return this.$message.error('获取物流失败') }
       this.progressInfo = res.data
-      console.log(this.progressInfo)
-
       this.progressDialogVisible = true
     }
   }
